@@ -11,12 +11,14 @@
     "prebackup": "node ./scripts/ensure-better-sqlite3.js",
     "prefill-covers": "node ./scripts/ensure-better-sqlite3.js",
     "dev": "node --watch src/server.js",
-    "start": "node src/server.js",
+    "start": "NODE_ENV=production node src/server.js",
     "seed": "node src/seed.js",
     "migrate": "node src/migrate.js",
     "backup": "node src/backup.js",
     "fill-covers": "node ./scripts/fill-covers.js",
-    "test": "node --test tests"
+    "test": "node --test tests",
+    "build": "cd ../client && npm install && npm run build",
+    "render-build": "npm install && npm run build && npm run migrate"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",

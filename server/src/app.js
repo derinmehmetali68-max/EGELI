@@ -64,7 +64,19 @@ app.use('/api/users', usersRoute);
 app.use('/api/database', databaseRoute);
 app.use('/api/ai', aiRoute);
 
-app.get('/', (_, res) => res.json({ app: 'Library Automation API', status: 'ok', links: { health: '/health', api: '/api' } }));
-app.get('/health', (_, res) => res.json({ ok: true }));
+app.get('/api/health', (_, res) => res.json({ ok: true }));
+
+// Production'da frontend'i serve et
+const clientDistPath = path.join(__dirname, '..', '..', 'client', 'dist');
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(clientDistPath));
+  app.get('*', (req, res) => {
+    if (!req.path.startsWith('/api') && !req.path.startsWith('/uploads')) {
+      res.sendFile(path.join(clientDistPath, 'index.html'));
+    }
+  });
+} else {
+  app.get('/', (_, res) => res.json({ app: 'Library Automation API', status: 'ok', links: { health: '/api/health', api: '/api' } }));
+}
 
 export default app;

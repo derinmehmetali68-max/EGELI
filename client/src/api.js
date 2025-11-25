@@ -8,7 +8,12 @@ function getApiBaseURL() {
     return import.meta.env.VITE_API_URL;
   }
   
-  // Mevcut hostname'i kullan (telefon erişimi için)
+  // Production'da aynı origin kullan
+  if (import.meta.env.PROD) {
+    return '/api';
+  }
+  
+  // Development'ta mevcut hostname'i kullan (telefon erişimi için)
   const hostname = window.location.hostname;
   const port = '5174'; // Backend portu
   return `http://${hostname}:${port}/api`;
