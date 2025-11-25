@@ -1,0 +1,11 @@
+# TASKS — İş Öğeleri
+- [x] DB migration (branches, settings, reservations, cover_path, branch_id)
+- [x] Kapak yükleme (multer) ve statik servis
+- [x] CSV import/export (csv-parse/sync)
+- [x] Barkod/QR (bwip-js, qrcode)
+- [x] Rezervasyon akışı
+- [x] Geciken hesaplama (config tabanlı)
+- [x] OPAC public endpoint
+- [x] E‑posta bildirim (nodemailer)
+- [x] Audit middleware
+- [x] UI sayfaları ve aksiyonlar

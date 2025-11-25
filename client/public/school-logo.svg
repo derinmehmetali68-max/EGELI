@@ -1,0 +1,24 @@
+<svg width="320" height="320" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Beykoz Cumhuriyet Anadolu Lisesi Logosu</title>
+  <desc id="desc">Okulun ana renklerini taşıyan dairesel logo</desc>
+  <defs>
+    <radialGradient id="ring" cx="0.5" cy="0.5" r="0.7">
+      <stop offset="0%" stop-color="#111827" />
+      <stop offset="100%" stop-color="#020617" />
+    </radialGradient>
+  </defs>
+  <circle cx="160" cy="160" r="150" fill="url(#ring)" />
+  <circle cx="160" cy="160" r="120" fill="#ffffff" />
+  <g fill="#111827" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+    <text x="160" y="82" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="4">BEYKOZ CUMHURİYET</text>
+    <text x="160" y="112" text-anchor="middle" font-size="18" font-weight="600" letter-spacing="3">ANADOLU LİSESİ</text>
+  </g>
+  <g transform="translate(160 195)" fill="#111827">
+    <path d="M-58 -26C-67 -26 -73 -17 -69 -9L-49 31C-45 39 -35 39 -31 31L-11 -9C-7 -17 -13 -26 -22 -26Z" />
+    <path d="M58 -26C67 -26 73 -17 69 -9L49 31C45 39 35 39 31 31L11 -9C7 -17 13 -26 22 -26Z" />
+    <ellipse cx="0" cy="-48" rx="55" ry="12" fill="#111827" />
+    <rect x="-16" y="16" width="32" height="70" rx="16" />
+    <circle cx="0" cy="-4" r="12" fill="#f87171" />
+  </g>
+  <text x="160" y="258" text-anchor="middle" font-size="26" font-weight="700" fill="#ef4444">2010</text>
+</svg>

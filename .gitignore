@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+node-20.11.1/
+
+# Environment
+.env
+.env.local
+.env.production
+
+# Build outputs
+client/dist/
+
+# Database
+server/data/*.db
+server/data/*.db-shm
+server/data/*.db-wal
+server/data/*.backup*
+
+# Uploads (keep structure)
+server/uploads/covers/*
+server/uploads/backups/*
+server/uploads/imports/*
+server/server/uploads/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Archives
+*.tar.xz
+*.tar.gz
+*.zip
+

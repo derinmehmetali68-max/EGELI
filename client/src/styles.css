@@ -1,0 +1,294 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Modern Color Palette */
+    --color-primary-50: #f0f9ff;
+    --color-primary-100: #e0f2fe;
+    --color-primary-200: #bae6fd;
+    --color-primary-300: #7dd3fc;
+    --color-primary-400: #38bdf8;
+    --color-primary-500: #0ea5e9;
+    --color-primary-600: #0284c7;
+    --color-primary-700: #0369a1;
+    --color-primary-800: #075985;
+    --color-primary-900: #0c4a6e;
+    --color-primary-950: #082f49;
+
+    --color-surface-50: #f8fafc;
+    --color-surface-100: #f1f5f9;
+    --color-surface-200: #e2e8f0;
+    --color-surface-300: #cbd5e1;
+    --color-surface-400: #94a3b8;
+    --color-surface-500: #64748b;
+    --color-surface-600: #475569;
+    --color-surface-700: #334155;
+    --color-surface-800: #1e293b;
+    --color-surface-900: #0f172a;
+    --color-surface-950: #020617;
+  }
+
+  html {
+    font-size: 16px;
+    /* Reset to standard base size */
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-900 font-sans antialiased;
+    background-image:
+      radial-gradient(at 0% 0%, rgba(14, 165, 233, 0.1) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.1) 0px, transparent 50%);
+    min-height: 100vh;
+  }
+
+  .dark body {
+    @apply bg-slate-950 text-slate-100;
+    background-image:
+      radial-gradient(at 0% 0%, rgba(14, 165, 233, 0.15) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.15) 0px, transparent 50%);
+  }
+
+  /* Typography Hierarchy */
+  h1 {
+    @apply text-4xl font-bold tracking-tight text-slate-900 dark:text-white mb-6;
+  }
+
+  h2 {
+    @apply text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-4;
+  }
+
+  h3 {
+    @apply text-2xl font-semibold tracking-tight text-slate-900 dark:text-white mb-3;
+  }
+
+  h4 {
+    @apply text-xl font-semibold text-slate-900 dark:text-white mb-2;
+  }
+
+  p {
+    @apply text-base leading-relaxed text-slate-600 dark:text-slate-300 mb-4;
+  }
+}
+
+@layer components {
+
+  /* Button Styles */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-900 disabled:opacity-50 disabled:cursor-not-allowed relative;
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-r from-sky-500 to-blue-600 text-white hover:from-sky-600 hover:to-blue-700 active:from-sky-700 active:to-blue-800 focus:ring-sky-500 shadow-md hover:shadow-lg;
+  }
+
+  .btn-secondary {
+    @apply bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-white hover:bg-slate-300 dark:hover:bg-slate-600 focus:ring-slate-500;
+  }
+
+  .btn-ghost {
+    @apply text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:ring-slate-500;
+  }
+
+  .btn-light {
+    @apply bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 focus:ring-slate-500;
+  }
+
+  .btn-icon {
+    @apply p-2 hover:bg-slate-100 dark:hover:bg-slate-800 focus:ring-slate-500;
+  }
+
+  .btn-sm {
+    @apply px-3 py-1.5 text-sm;
+  }
+
+  .btn-lg {
+    @apply px-6 py-3 text-lg;
+  }
+
+  .btn-loading {
+    @apply cursor-wait;
+  }
+
+  /* Input Styles */
+  .input {
+    @apply w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .input-floating {
+    position: relative;
+  }
+
+  .input-floating input {
+    @apply pt-6 pb-2;
+  }
+
+  /* Table Styles */
+  .table {
+    @apply w-full border-collapse;
+  }
+
+  .table th,
+  .table td {
+    @apply border border-slate-200 p-3 text-base;
+  }
+
+  /* Excel-like Table */
+  .table-excel {
+    @apply w-full border-collapse text-sm;
+  }
+
+  .table-excel th {
+    @apply bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-600 px-2 py-1.5 text-left font-bold text-slate-700 dark:text-slate-200 whitespace-nowrap;
+  }
+
+  .table-excel td {
+    @apply border border-slate-300 dark:border-slate-600 px-2 py-1.5 text-slate-700 dark:text-slate-300;
+  }
+
+  .table-excel tr:nth-child(even) {
+    @apply bg-slate-50 dark:bg-slate-900/50;
+  }
+
+  .table-excel tbody tr:hover {
+    @apply bg-blue-50 dark:bg-blue-900/20;
+  }
+
+  /* Row States */
+  .row-selected {
+    @apply bg-sky-100 dark:bg-sky-900/30 !important;
+  }
+
+  .row-clickable {
+    @apply cursor-pointer;
+  }
+
+  /* Compact Table */
+  .table-compact th,
+  .table-compact td {
+    @apply px-1.5 py-1 text-xs;
+  }
+
+  /* Modern Card */
+  .card {
+    @apply bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply hover:shadow-lg hover:-translate-y-1 hover:border-sky-200 dark:hover:border-sky-900;
+  }
+
+  /* Glassmorphism Utilities */
+  .glass {
+    @apply bg-white/70 dark:bg-slate-900/70 backdrop-blur-lg border border-white/20 dark:border-slate-700/30;
+  }
+
+  /* Custom Scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-slate-100 dark:bg-slate-800 rounded-full;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 dark:bg-slate-600 rounded-full hover:bg-slate-400 dark:hover:bg-slate-500 transition-colors;
+  }
+}
+
+@layer utilities {
+
+  /* Animations */
+  .animate-fade-in {
+    animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  .animation-delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+}
+
+/* Keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* NProgress Customization */
+#nprogress .bar {
+  @apply bg-sky-500 !important;
+  height: 3px !important;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px #0ea5e9, 0 0 5px #0ea5e9;
+}
+
+#nprogress .spinner-icon {
+  @apply border-t-sky-500 border-l-sky-500 !important;
+}

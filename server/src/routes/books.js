@@ -1,0 +1,36 @@
+import { Router } from 'express'; import multer from 'multer'; import path from 'path';
+import { requireAuth, requireRole } from '../middleware/auth.js'; import { audit } from '../middleware/audit.js';
+import { listBooks, getBook, createBook, updateBook, deleteBook, exportBooksCsv, importBooksCsv, normalizeAllBooks, aiNormalizeBooks, completeBookCovers, getImportJobStatus } from '../controllers/booksController.js';
+import { uploadCover } from '../controllers/filesController.js'; import { barcodeIsbn } from '../controllers/barcodeController.js';
+import { booksQrSheetPdf } from '../controllers/reportsController.js';
+const r=Router();
+r.get('/barcode/:isbn.png', barcodeIsbn);
+r.get('/qr.pdf', requireAuth, booksQrSheetPdf);
+r.get('/export.csv', requireAuth, exportBooksCsv);
+
+import { isbnFetch, isbnCreate, exportBooksXlsx, importBooksXlsx, isbnBulkFromXlsx, geminiResearchIsbn, geminiBatchEnrich } from '../controllers/booksController.js';
+r.get('/isbn/:isbn/fetch', requireAuth, isbnFetch);
+r.get('/isbn/:isbn/gemini', requireAuth, geminiResearchIsbn);
+r.post('/isbn/:isbn/create', requireAuth, audit('books.isbn.create'), isbnCreate);
+r.get('/export.xlsx', requireAuth, exportBooksXlsx);
+const xlsxUpload = multer({ dest: path.join(process.cwd(),'server','uploads','imports') });
+r.post('/import.xlsx', requireAuth, xlsxUpload.single('file'), importBooksXlsx);
+r.get('/import-jobs/:id', requireAuth, getImportJobStatus);
+r.post('/isbn/bulk-xlsx', requireAuth, xlsxUpload.single('file'), isbnBulkFromXlsx);
+
+const upload=multer({ dest: path.join(process.cwd(),'server','uploads','imports') });
+const covers=multer({ dest: path.join(process.cwd(),'server','uploads','covers') });
+r.post('/import', requireAuth, upload.single('file'), importBooksCsv);
+r.post('/cover', requireAuth, covers.single('file'), uploadCover);
+r.use(requireAuth);
+r.get('/search', listBooks);
+r.get('/', listBooks);
+r.get('/:id', getBook);
+r.post('/', audit('books.create'), createBook);
+r.put('/:id', audit('books.update'), updateBook);
+r.delete('/:id', audit('books.delete'), deleteBook);
+r.post('/normalize-all', audit('books.normalize'), normalizeAllBooks);
+r.post('/covers/complete', audit('books.covers.complete'), completeBookCovers);
+r.post('/ai-normalize', requireRole('admin'), audit('books.ai.normalize'), aiNormalizeBooks);
+r.post('/gemini/enrich', requireRole('admin'), audit('books.gemini.enrich'), geminiBatchEnrich);
+export default r;
