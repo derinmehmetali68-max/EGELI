@@ -2,20 +2,15 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# Copy package files
-COPY package*.json ./
-COPY server/package*.json ./server/
-COPY client/package*.json ./client/
-
-# Install dependencies
-RUN cd server && npm install
-RUN cd client && npm install
-
-# Copy source code
+# Copy all files first
 COPY . .
 
 # Create data directory for SQLite
 RUN mkdir -p /app/server/data
+
+# Install dependencies
+RUN cd server && npm install
+RUN cd client && npm install
 
 # Build frontend
 RUN cd client && npm run build
