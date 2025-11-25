@@ -2,7 +2,7 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# Copy all files first
+# Copy all files
 COPY . .
 
 # Create data directory for SQLite
@@ -23,6 +23,6 @@ ENV NODE_ENV=production
 ENV PORT=5174
 ENV DB_PATH=/app/server/data/library.db
 
-# Start server (will run migrate on first start)
+# Start server
 WORKDIR /app/server
 CMD ["sh", "-c", "npm run migrate && npm run seed && npm start"]
