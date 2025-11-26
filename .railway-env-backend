@@ -1,0 +1,21 @@
+# Backend Environment Variables for Railway
+# Bu dosya Railway'e environment variables eklemek için kullanılır
+
+# JWT Secret - ÖNEMLİ: Production'da mutlaka değiştirin!
+JWT_SECRET=SmmE3RbKuunZReJDx1AboIvA5w5CzDL9Flw0p4095xhJn0p8ReVAwVohIrB7
+
+# Server Port
+PORT=5174
+
+# Node Environment
+NODE_ENV=production
+
+# Database Path - SQLite database için persistent volume gerekli
+DB_PATH=/app/server/data/library.db
+
+# Admin User Credentials - İlk giriş için
+ADMIN_EMAIL=admin@egeli.com
+ADMIN_PASSWORD=Admin123!
+
+# CORS Origin - Frontend URL buraya eklenecek (deployment sonrası)
+# CORS_ORIGIN=https://your-frontend-url.railway.app

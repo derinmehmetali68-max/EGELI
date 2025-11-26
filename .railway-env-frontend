@@ -1,0 +1,11 @@
+# Frontend Environment Variables for Railway
+# Bu dosya Railway'e environment variables eklemek için kullanılır
+
+# Node Environment
+NODE_ENV=production
+
+# API URL - Backend deployment tamamlandıktan sonra güncellenecek
+# VITE_API_URL=https://your-backend-url.railway.app
+
+# Build için gerekli
+# Frontend Vite kullandığı için VITE_ prefix'i ile başlamalı
