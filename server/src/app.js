@@ -67,7 +67,7 @@ app.use('/api/ai', aiRoute);
 app.get('/api/health', (_, res) => res.json({ ok: true }));
 
 // Production'da frontend'i serve et
-const clientDistPath = path.join(__dirname, '..', '..', 'client', 'dist');
+const clientDistPath = process.env.CLIENT_DIST_PATH || path.join(__dirname, '..', '..', 'client', 'dist');
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(clientDistPath));
   app.get('*', (req, res) => {
